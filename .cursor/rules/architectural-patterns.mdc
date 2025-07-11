@@ -1,0 +1,31 @@
+# .cursor/rules/architectural-patterns.md
+
+- rule: enforce-dto-usage-for-api-responses
+  description: >-
+    Enforces the use of Data Transfer Objects (DTOs) for shaping all data passed from server-side logic
+    (API Routes, Server Actions) to the client. This prevents the accidental leakage of the full data model,
+    as mandated by the project's data flow principles.
+  detection_logic: >-
+    Flags any 'return' statement within a file in '/app/api/' or a function marked with "'use server'"
+    that returns data directly from a Prisma client query without being passed through a shaping or mapping function.
+    It will suggest creating a DTO and a corresponding mapping utility.
+  severity: error
+
+- rule: enforce-api-route-location
+  description: >-
+    Ensures all new server-side API endpoints are created within the '/app/api/' directory,
+    maintaining the project's defined file structure.
+  detection_logic: >-
+    Flags the creation of new files containing 'export async function GET|POST|PUT|DELETE' outside of the
+    '/app/api/' directory path.
+  severity: warning
+
+- rule: prefer-server-actions-for-mutations
+  description: >-
+    Recommends using Next.js Server Actions for any state-changing operations to leverage built-in CSRF protection,
+    as specified for features like the "'Opportunity Spotlight'" approval.
+  detection_logic: >-
+    Identifies 'POST' or 'PUT' API routes that appear to handle simple form submissions or single-action mutations
+    and suggests refactoring them into a Server Action by adding the "'use server'" directive to the function.
+  severity: suggestion
+

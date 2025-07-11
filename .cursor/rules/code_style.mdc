@@ -1,0 +1,36 @@
+# .cursor/rules/code-style.md
+
+- rule: enforce-component-naming-convention
+  description: >-
+    Ensures all React components are named with PascalCase, adhering to the "SOP: Core Component
+    Design System & Style Guide".
+  detection_logic: >-
+    Flags any function in a '.tsx' file that returns JSX but is not named with PascalCase.
+  severity: warning
+
+- rule: enforce-file-naming-convention
+  description: >-
+    Ensures all new component files use kebab-case, adhering to the "SOP: Core Component Design System & Style Guide".
+  detection_logic: >-
+    When a new component is created, this rule checks if its filename (e.g., 'my-component.tsx')
+    is in kebab-case. It flags filenames that use PascalCase or camelCase.
+  severity: warning
+
+- rule: enforce-tsdoc-for-exports
+  description: >-
+    Ensures all new exported functions, types, and classes are documented with TSDoc blocks to improve
+    codebase clarity and maintainability.
+  detection_logic: >-
+    Flags any exported function, type, or class that does not have a preceding '/** ... */' TSDoc comment block.
+    The rule can suggest a basic template including '@param' and '@returns' tags.
+  severity: suggestion
+
+- rule: enforce-try-catch-for-io
+  description: >-
+    Ensures all I/O operations (e.g., database queries with Prisma, external API calls with fetch)
+    are wrapped in try...catch blocks to handle errors gracefully.
+  detection_logic: >-
+    Identifies any awaited call to a Prisma client method (e.g., 'prisma.client.findUnique') or a 'fetch' call
+    that is not enclosed within a 'try' block.
+  severity: warning
+

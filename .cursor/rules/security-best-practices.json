@@ -1,0 +1,10 @@
+{
+    "rules": [
+      {
+        "name": "Project Security Best Practices",
+        "prompt": "You must strictly enforce the following security rules derived from the project's core principles:\n\n1.  **No Hardcoded Secrets (Equivalent to SEC-01):**\n    * Under no circumstances should you write secrets, API keys, passwords, or other sensitive credentials directly in the source code.\n    * All such values **MUST** be loaded securely from environment variables (e.g., `process.env.GOOGLE_CLIENT_SECRET`).\n\n2.  **Robust Error Handling for I/O (Equivalent to EH-01):**\n    * All functions that perform I/O operations (e.g., database queries with Prisma, external API calls with `fetch`) **MUST** be wrapped in comprehensive `try...catch` blocks.\n    * Caught errors must be logged at the 'error' level, including the full stack trace and relevant context (e.g., `clientId`).\n    * API routes must not fail silently. They should return a standardised JSON error object as specified in the `CONTEXT.md` file.",
+        "when": "(file.endsWith('.ts') || file.endsWith('.tsx'))"
+      }
+    ]
+  }
+  

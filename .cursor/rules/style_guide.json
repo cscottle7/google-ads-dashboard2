@@ -1,0 +1,9 @@
+{
+    "rules": [
+      {
+        "name": "Project Style Guide & Conventions",
+        "prompt": "Strictly adhere to the Google Ads Campaign Dashboard code style and documentation standards. Key requirements include:\n\n1.  **Naming Conventions:**\n    * **React Components:** Must use `PascalCase` (e.g., `PerformanceHeatmap.tsx`).\n    * **Functions & Variables:** Must use `camelCase` (e.g., `fetchCampaignData`).\n    * **API Route Directories:** Must use `kebab-case` (e.g., `/api/campaign-overview/`).\n\n2.  **Commenting & Documentation:**\n    * All exported functions, classes, and types **MUST** have a complete TSDoc block.\n    * The documentation **MUST** include:\n        * A concise summary of the element's purpose.\n        * A `@param` tag for every parameter.\n        * A `@returns` tag describing the output.",
+        "when": "(file.endsWith('.ts') || file.endsWith('.tsx'))"
+      }
+    ]
+  }
